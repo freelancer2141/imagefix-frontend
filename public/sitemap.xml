@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/image-resizer</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/image-compressor</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/compress-image-to-20kb</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/compress-image-to-50kb</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/compress-image-to-100kb</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/passport-photo-resizer</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/signature-resizer</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/ssc-photo-resizer</loc>
+  </url>
+
+  <url>
+    <loc>https://imagefixapp.vercel.app/upsc-photo-resizer</loc>
+  </url>
+
+</urlset>
