@@ -162,7 +162,7 @@ export default function ImageUploader({ imageMeta, setImageMeta, onReset, error,
             <p className="text-base font-bold text-slate-800 dark:text-slate-100 text-center">
               {isLoading ? 'Processing Image...' : 'Click to Upload Image'}
             </p>
-            <p className="text-xs text-slate-400 mt-1 text-center">
+            <p className="text-xs text-slate-600 mt-1 text-center">
               or drag and drop your JPG, PNG, or WebP photo here
             </p>
 

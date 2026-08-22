@@ -31,9 +31,9 @@ export default function Footer() {
 
           {/* Tools */}
           <div>
-            <h4 className="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h2 className="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white mb-3">
               Image Tools
-            </h4>
+            </h2>
 
             <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
 
@@ -87,9 +87,9 @@ export default function Footer() {
 
           {/* Photo Resizers */}
           <div>
-            <h4 className="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h2 className="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white mb-3">
               Photo Resizers
-            </h4>
+            </h2>
 
             <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
 
@@ -137,9 +137,9 @@ export default function Footer() {
         {/* Disclaimer */}
         <div className="border-t border-slate-100 dark:border-slate-800/80 pt-6 mb-6">
 
-          <h4 className="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white mb-2">
+          <h2 className="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white mb-2">
             Disclaimer
-          </h4>
+          </h2>
 
           <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-4xl">
             Examination presets provided are for convenience and reference
