@@ -299,6 +299,90 @@ export async function resizeImageToDimensions({
  * Smart Compress image to target KB size
  * Compresses file size (bytes) via encoder quantization while strictly preserving 100% of original pixel resolution and dimensions.
  */
+// export async function compressImageToTargetSize({
+//   image,
+//   targetKb,
+//   initialWidth,
+//   initialHeight,
+//   format = 'image/jpeg',
+//   preserveExactDimensions = true,
+//   onProgress,
+// }) {
+//   const targetBytes = targetKb * 1024;
+//   const loadedImg = await loadImage(image);
+//   const srcWidth = Math.round(initialWidth || loadedImg.naturalWidth || loadedImg.width || 800);
+//   const srcHeight = Math.round(initialHeight || loadedImg.naturalHeight || loadedImg.height || 600);
+
+//   const canvas = document.createElement('canvas');
+//   const ctx = canvas.getContext('2d');
+//   if (!ctx) throw new Error('Canvas 2D context not supported.');
+
+//   // Strictly preserve the exact 100% original pixel resolution (no downsampling, no scaling down)
+//   canvas.width = srcWidth;
+//   canvas.height = srcHeight;
+
+//   if (format === 'image/jpeg' || format === 'image/jpg') {
+//     ctx.fillStyle = '#ffffff';
+//     ctx.fillRect(0, 0, canvas.width, canvas.height);
+//   }
+
+//   ctx.imageSmoothingEnabled = true;
+//   ctx.imageSmoothingQuality = 'high';
+//   ctx.drawImage(loadedImg, 0, 0, srcWidth, srcHeight);
+
+//   let minQuality = 0.01;
+//   let maxQuality = 0.99;
+//   let bestBlob = null;
+//   let bestQuality = 0.85;
+
+//   // High precision binary search on quality while strictly preserving exact dimensions
+//   for (let step = 0; step < 16; step++) {
+//     if (onProgress) onProgress(Math.round(((step + 1) / 16) * 100));
+
+//     const midQuality = (minQuality + maxQuality) / 2;
+//     const blob = await canvasToBlob(canvas, format, midQuality);
+
+//     if (!blob) break;
+
+//     if (blob.size <= targetBytes) {
+//       bestBlob = blob;
+//       bestQuality = midQuality;
+//       minQuality = midQuality; // Try higher quality to get closer to target
+//     } else {
+//       maxQuality = midQuality; // Need more compression (lower quality)
+//     }
+
+//     // If we hit within 4% of target limit, we found optimal quality
+//     if (blob.size <= targetBytes && blob.size >= targetBytes * 0.96) {
+//       bestBlob = blob;
+//       bestQuality = midQuality;
+//       break;
+//     }
+//   }
+
+//   // Fallback: If image at minQuality was still above target or no blob found
+//   if (!bestBlob) {
+//     bestBlob = await canvasToBlob(canvas, format, minQuality);
+//     bestQuality = minQuality;
+//   }
+
+//   const bestDataUrl = canvas.toDataURL(format, bestQuality);
+
+//   if (onProgress) onProgress(100);
+
+//   return {
+//     blob: bestBlob,
+//     dataUrl: bestDataUrl,
+//     width: srcWidth,
+//     height: srcHeight,
+//     size: bestBlob ? bestBlob.size : targetBytes,
+//     formattedSize: formatBytes(bestBlob ? bestBlob.size : targetBytes),
+//     targetKb,
+//     achievedKb: Math.round(((bestBlob ? bestBlob.size : targetBytes) / 1024) * 10) / 10,
+//     qualityUsed: Math.round(bestQuality * 100),
+//   };
+// }
+
 export async function compressImageToTargetSize({
   image,
   targetKb,
@@ -308,16 +392,25 @@ export async function compressImageToTargetSize({
   preserveExactDimensions = true,
   onProgress,
 }) {
-  const targetBytes = targetKb * 1024;
+  const targetBytes = Math.floor(targetKb * 1024);
+
   const loadedImg = await loadImage(image);
-  const srcWidth = Math.round(initialWidth || loadedImg.naturalWidth || loadedImg.width || 800);
-  const srcHeight = Math.round(initialHeight || loadedImg.naturalHeight || loadedImg.height || 600);
+
+  const srcWidth = Math.round(
+    initialWidth || loadedImg.naturalWidth || loadedImg.width || 800
+  );
+
+  const srcHeight = Math.round(
+    initialHeight || loadedImg.naturalHeight || loadedImg.height || 600
+  );
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  if (!ctx) throw new Error('Canvas 2D context not supported.');
 
-  // Strictly preserve the exact 100% original pixel resolution (no downsampling, no scaling down)
+  if (!ctx) {
+    throw new Error('Canvas 2D context not supported.');
+  }
+
   canvas.width = srcWidth;
   canvas.height = srcHeight;
 
@@ -328,57 +421,101 @@ export async function compressImageToTargetSize({
 
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'high';
-  ctx.drawImage(loadedImg, 0, 0, srcWidth, srcHeight);
 
-  let minQuality = 0.01;
-  let maxQuality = 0.99;
+  ctx.drawImage(
+    loadedImg,
+    0,
+    0,
+    srcWidth,
+    srcHeight
+  );
+
+  let low = 0.01;
+  let high = 0.99;
+
   let bestBlob = null;
-  let bestQuality = 0.85;
+  let bestQuality = 0.01;
 
-  // High precision binary search on quality while strictly preserving exact dimensions
-  for (let step = 0; step < 16; step++) {
-    if (onProgress) onProgress(Math.round(((step + 1) / 16) * 100));
+  // First check maximum quality
+  const maxBlob = await canvasToBlob(canvas, format, high);
 
-    const midQuality = (minQuality + maxQuality) / 2;
-    const blob = await canvasToBlob(canvas, format, midQuality);
+  if (!maxBlob) {
+    throw new Error('Failed to generate compressed image.');
+  }
 
-    if (!blob) break;
+  // Already below target at high quality
+  if (maxBlob.size <= targetBytes) {
+    bestBlob = maxBlob;
+    bestQuality = high;
+  } else {
+    // Binary search for highest quality that stays <= target
+    for (let step = 0; step < 20; step++) {
+      const quality = (low + high) / 2;
 
-    if (blob.size <= targetBytes) {
-      bestBlob = blob;
-      bestQuality = midQuality;
-      minQuality = midQuality; // Try higher quality to get closer to target
-    } else {
-      maxQuality = midQuality; // Need more compression (lower quality)
-    }
+      const blob = await canvasToBlob(
+        canvas,
+        format,
+        quality
+      );
 
-    // If we hit within 4% of target limit, we found optimal quality
-    if (blob.size <= targetBytes && blob.size >= targetBytes * 0.96) {
-      bestBlob = blob;
-      bestQuality = midQuality;
-      break;
+      if (!blob) continue;
+
+      if (onProgress) {
+        onProgress(Math.min(95, Math.round(((step + 1) / 20) * 95)));
+      }
+
+      if (blob.size <= targetBytes) {
+        // Valid result — save it and try higher quality
+        bestBlob = blob;
+        bestQuality = quality;
+        low = quality;
+      } else {
+        // Too large — reduce quality
+        high = quality;
+      }
     }
   }
 
-  // Fallback: If image at minQuality was still above target or no blob found
+  // If target cannot be reached at current dimensions,
+  // use the lowest quality available.
   if (!bestBlob) {
-    bestBlob = await canvasToBlob(canvas, format, minQuality);
-    bestQuality = minQuality;
+    const smallestBlob = await canvasToBlob(
+      canvas,
+      format,
+      0.01
+    );
+
+    if (!smallestBlob) {
+      throw new Error('Unable to compress image to the requested size.');
+    }
+
+    bestBlob = smallestBlob;
+    bestQuality = 0.01;
   }
 
-  const bestDataUrl = canvas.toDataURL(format, bestQuality);
+  /*
+   * IMPORTANT:
+   * Use the exact blob we selected.
+   * Do NOT call canvas.toDataURL() again because that
+   * performs another JPEG encoding and can produce a
+   * different file size.
+   */
+  const dataUrl = await readFileAsDataURL(bestBlob);
 
-  if (onProgress) onProgress(100);
+  if (onProgress) {
+    onProgress(100);
+  }
 
   return {
     blob: bestBlob,
-    dataUrl: bestDataUrl,
+    dataUrl,
     width: srcWidth,
     height: srcHeight,
-    size: bestBlob ? bestBlob.size : targetBytes,
-    formattedSize: formatBytes(bestBlob ? bestBlob.size : targetBytes),
+    size: bestBlob.size,
+    formattedSize: formatBytes(bestBlob.size),
     targetKb,
-    achievedKb: Math.round(((bestBlob ? bestBlob.size : targetBytes) / 1024) * 10) / 10,
+    achievedKb:
+      Math.round((bestBlob.size / 1024) * 10) / 10,
     qualityUsed: Math.round(bestQuality * 100),
   };
 }
