@@ -134,7 +134,7 @@ export default function Header({
           </Link>
 
           {/* Presets */}
-          <Link
+          <a
             id="nav-btn-presets"
             href="/#presets-guide"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'presets'
@@ -144,10 +144,10 @@ export default function Header({
           >
             <Layers className="w-3.5 h-3.5" />
             <span>Presets</span>
-          </Link>
+          </a>
 
           {/* FAQ */}
-          <Link
+          <a
             id="nav-btn-about"
             href="/#faq-section"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'faq'
@@ -157,7 +157,7 @@ export default function Header({
           >
             <HelpCircle className="w-3.5 h-3.5" />
             <span>FAQ</span>
-          </Link>
+          </a>
 
         </nav>
 
