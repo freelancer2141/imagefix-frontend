@@ -204,7 +204,7 @@ export default function ResizeTool({
     <div className="flex flex-col justify-between h-full space-y-6">
       <div>
         {/* Uppercase tracking label */}
-        <label className="block text-[10px] uppercase tracking-widest font-bold text-slate-400 dark:text-slate-500 mb-3">
+        <label className="block text-[10px] uppercase tracking-widest font-bold text-slate-600 dark:text-slate-400 mb-3">
           Configuration
         </label>
 
@@ -232,10 +232,10 @@ export default function ResizeTool({
         {/* Preset Selector */}
         <div className="mb-4">
           <div className="flex items-center justify-between mb-1.5">
-            <label htmlFor="preset-select" className="text-xs font-bold text-slate-700 dark:text-slate-200">
+            <label htmlFor="preset-select" className="text-xs font-bold text-slate-600 dark:text-slate-400">
               Exam & Standard Presets
             </label>
-            <span className="text-[10px] font-medium text-slate-400">SSC • UPSC • Passport</span>
+            <span className="text-[10px] font-medium text-slate-600 dark:text-slate-400">SSC • UPSC • Passport</span>
           </div>
 
           <select
@@ -286,7 +286,7 @@ export default function ResizeTool({
         {/* Width & Height Numeric Grid */}
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div>
-            <label htmlFor="resize-width" className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">
+            <label htmlFor="resize-width" className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-1 uppercase tracking-wider">
               Width (px)
             </label>
             <input
@@ -302,7 +302,7 @@ export default function ResizeTool({
           </div>
 
           <div>
-            <label htmlFor="resize-height" className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">
+            <label htmlFor="resize-height" className="block text-[10px] font-bold text-slate-600 dark:text-slate-400 mb-1 uppercase tracking-wider">
               Height (px)
             </label>
             <input

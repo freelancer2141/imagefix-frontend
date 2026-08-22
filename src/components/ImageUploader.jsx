@@ -172,7 +172,7 @@ export default function ImageUploader({ imageMeta, setImageMeta, onReset, error,
               Browse Files
             </span>
 
-            <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+            <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-medium text-slate-600 dark:text-slate-400">
               <Sparkles className="w-3 h-3 text-indigo-500" />
               Paste from clipboard (Ctrl+V)
             </div>
