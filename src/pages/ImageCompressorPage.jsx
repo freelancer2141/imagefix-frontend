@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ImageToolPage from '../components/ImageToolPage.jsx';
 
 export default function ImageCompressorPage() {
@@ -17,13 +18,13 @@ export default function ImageCompressorPage() {
                 <>
                     <div>
                         <h2 className="text-2xl font-bold">
-                            Compress Images to Exact KB Size
+                            Compress Images to a Specific KB Size
                         </h2>
 
                         <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
                             Many online application forms require photographs and
                             signatures to stay below a specific file size. ImageFix
-                            lets you compress images to common target sizes such as
+                            lets you compress images toward common target sizes such as
                             20KB, 50KB, 100KB and 200KB while keeping the image
                             dimensions unchanged.
                         </p>
@@ -36,30 +37,30 @@ export default function ImageCompressorPage() {
 
                         <ul className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 list-disc list-inside">
                             <li>
-                                <a
-                                    href="/compress-image-to-20kb"
+                                <Link
+                                    to="/compress-image-to-20kb"
                                     className="text-indigo-600 dark:text-indigo-400 hover:underline"
                                 >
                                     Compress image to 20KB
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a
-                                    href="/compress-image-to-50kb"
+                                <Link
+                                    to="/compress-image-to-50kb"
                                     className="text-indigo-600 dark:text-indigo-400 hover:underline"
                                 >
                                     Compress image to 50KB
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a
-                                    href="/compress-image-to-100kb"
+                                <Link
+                                    to="/compress-image-to-100kb"
                                     className="text-indigo-600 dark:text-indigo-400 hover:underline"
                                 >
                                     Compress image to 100KB
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

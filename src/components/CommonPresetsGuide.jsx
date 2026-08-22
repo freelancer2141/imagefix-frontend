@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { 
-  Layers, 
-  Search, 
-  ArrowUpRight, 
-  AlertTriangle, 
-  Check, 
-  ExternalLink,
-  Filter,
-  Sparkles
+import {
+  Layers,
+  Search,
+  ArrowUpRight,
+  AlertTriangle,
 } from 'lucide-react';
 import { PRESET_OPTIONS, PRESET_CATEGORIES } from '../utils/presetsData.js';
 
@@ -17,7 +13,7 @@ export default function CommonPresetsGuide({ onSelectPreset }) {
 
   const filteredPresets = PRESET_OPTIONS.filter((item) => {
     const matchesCat = selectedCategory === 'all' || item.category === selectedCategory;
-    const matchesSearch = 
+    const matchesSearch =
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (item.instructions && item.instructions.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -56,11 +52,11 @@ export default function CommonPresetsGuide({ onSelectPreset }) {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3.5 py-4 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                selectedCategory === cat.id
+              aria-pressed={selectedCategory === cat.id}
+              className={`px-3.5 py-4 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${selectedCategory === cat.id
                   ? 'bg-indigo-600 text-white shadow-xs'
                   : 'bg-white dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800'
-              }`}
+                }`}
             >
               {cat.label}
             </button>
@@ -74,6 +70,7 @@ export default function CommonPresetsGuide({ onSelectPreset }) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search exam (e.g. SSC, UPSC, 50 KB)..."
+            aria-label="Search examination and ID presets"
             className="w-full pl-9 pr-3.5 py-2.5 rounded-xl text-xs border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
           />
         </div>
@@ -118,9 +115,8 @@ export default function CommonPresetsGuide({ onSelectPreset }) {
               </span>
 
               <button
-                onClick={() => {
-                  if (onSelectPreset) onSelectPreset(preset);
-                }}
+                type="button"
+                onClick={() => onSelectPreset?.(preset)}
                 className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white text-indigo-700 dark:text-indigo-300 text-xs font-bold transition-all cursor-pointer"
               >
                 <span>Use Preset</span>

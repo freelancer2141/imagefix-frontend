@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ImageToolPage from '../components/ImageToolPage.jsx';
 
 export default function SignatureResizerPage() {
@@ -85,26 +86,26 @@ export default function SignatureResizerPage() {
                         </h2>
 
                         <div className="mt-4 flex flex-wrap gap-3">
-                            <a
-                                href="/image-resizer"
+                            <Link
+                                to="/image-resizer"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 Image Resizer
-                            </a>
+                            </Link>
 
-                            <a
-                                href="/image-compressor"
+                            <Link
+                                to="/image-compressor"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 Image Compressor
-                            </a>
+                            </Link>
 
-                            <a
-                                href="/passport-photo-resizer"
+                            <Link
+                                to="/passport-photo-resizer"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 Passport Photo Resizer
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </>

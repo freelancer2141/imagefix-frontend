@@ -4,27 +4,22 @@ import {
   Maximize2,
   Sliders,
   Sparkles,
-  CheckCircle2,
   Info,
   AlertCircle,
-  Zap,
-  ArrowRight,
   Lock,
-  ShieldCheck
 } from 'lucide-react';
 import { compressImageToTargetSize } from "../utils/imageProcessor.js";
-import { formatBytes } from "../utils/formatters.js";
-import { recordProcessedAction } from '../services/api.js';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function CompressTool({
   imageMeta,
   onProcessComplete,
   isProcessing,
   setIsProcessing,
-  activeTab = 'compress',
-  setActiveTab,
   initialTargetKb = null
 }) {
+  const navigate = useNavigate();
   const originalKb = imageMeta ? Math.round((imageMeta.size / 1024) * 10) / 10 : 200;
 
   // Set initial target
@@ -45,6 +40,7 @@ export default function CompressTool({
   const [compressionProgress, setCompressionProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState('');
   const [validationError, setValidationError] = useState('');
+
 
   // Popular Quick-Pick KB values common in recruitment forms
   const QUICK_KB_PRESETS = [20, 50, 100, 200, 500];
@@ -158,7 +154,7 @@ export default function CompressTool({
         alreadySmaller: origBytes <= targetBytes,
       };
 
-      recordProcessedAction('compress', Math.max(0, imageMeta.size - finalResult.size));
+
       onProcessComplete(finalResult);
     } catch (err) {
       setValidationError(err.message || 'Failed to compress image.');
@@ -183,7 +179,7 @@ export default function CompressTool({
         <div className="grid grid-cols-2 gap-2.5 mb-4 p-1 bg-slate-100 dark:bg-slate-950/60 rounded-2xl border border-slate-200/80 dark:border-slate-800">
           <button
             type="button"
-            onClick={() => setActiveTab && setActiveTab('resize')}
+            onClick={() => navigate('/image-resizer')}
             className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 text-xs sm:text-sm font-bold transition-colors cursor-pointer"
           >
             <Maximize2 className="w-4 h-4 stroke-[2.2]" />
@@ -192,7 +188,7 @@ export default function CompressTool({
 
           <button
             type="button"
-            onClick={() => setActiveTab && setActiveTab('compress')}
+            onClick={() => navigate('/image-compressor')}
             className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm font-bold shadow-xs border border-slate-200/60 dark:border-slate-700 cursor-pointer"
           >
             <Minimize2 className="w-4 h-4 stroke-[2.2]" />

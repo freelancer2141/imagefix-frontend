@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import { 
-  CheckCircle2, 
-  Download, 
-  RefreshCw, 
-  Sparkles, 
-  ArrowDownRight, 
-  Maximize2, 
+import {
+  CheckCircle2,
+  Download,
+  RefreshCw,
+  ArrowDownRight,
+  Maximize2,
   Minimize2,
-  Eye, 
-  Copy, 
-  Check, 
-  Share2,
-  FileCheck2,
-  ShieldCheck,
+  Eye,
+  Copy,
+  Check,
   ArrowRight,
-  Sliders,
-  Lock
 } from 'lucide-react';
 import { downloadBlob } from '../utils/imageProcessor.js';
 
@@ -65,7 +59,7 @@ export default function ResultCard({ result, onReset, onContinueWithImage }) {
             <h3 className="font-extrabold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
               Ready for Download
               <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                100% Processed
+                Processed Locally
               </span>
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -92,13 +86,15 @@ export default function ResultCard({ result, onReset, onContinueWithImage }) {
           <div className="relative group w-full max-w-[280px] aspect-auto rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-[#0c1220] p-3 flex items-center justify-center">
             <img
               src={result.dataUrl}
-              alt="Processed output"
+              alt="Processed image preview"
               className="max-h-56 max-w-full object-contain rounded-xl shadow-xs"
             />
             <button
-              onClick={() => setShowFullPreview(!showFullPreview)}
+              type="button"
+              onClick={() => setShowFullPreview(true)}
+              aria-label="View full size image"
               className="absolute bottom-3 right-3 p-2 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white text-xs backdrop-blur-sm transition-all cursor-pointer"
-              title="Toggle full size view"
+              title="View full size image"
             >
               <Eye className="w-3.5 h-3.5" />
             </button>
@@ -139,14 +135,15 @@ export default function ResultCard({ result, onReset, onContinueWithImage }) {
                   Dimensions
                 </span>
                 <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800">
-                  100% Pixels Retained
+                  {isResizeOp ? 'Dimensions Changed' : 'Dimensions Retained'}
                 </span>
               </div>
               <div className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white font-mono">
                 {result.width} × {result.height} <span className="text-xs font-normal text-slate-400">px</span>
               </div>
               <span className="text-[11px] text-slate-500 dark:text-slate-400 block mt-1 font-mono">
-                Original: {result.originalWidth} × {result.originalHeight} px (0 pixels lost)
+                Original: {result.originalWidth} × {result.originalHeight} px
+                {!isResizeOp && ' (dimensions retained)'}
               </span>
             </div>
           </div>
@@ -208,14 +205,14 @@ export default function ResultCard({ result, onReset, onContinueWithImage }) {
                 2
               </span>
               <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                {isResizeOp 
-                  ? `Need to compress this resized photo to KB size?` 
+                {isResizeOp
+                  ? `Need to compress this resized photo to KB size?`
                   : `Need to resize this compressed photo's width & height?`}
               </h4>
             </div>
             <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 pl-7">
-              {isResizeOp 
-                ? `Lock exact ${result.width} × ${result.height} px dimensions and reduce only the file size (KB).` 
+              {isResizeOp
+                ? `Lock exact ${result.width} × ${result.height} px dimensions and reduce only the file size (KB).`
                 : `Change height & width while strictly preserving your ≤ ${targetKbUsed} KB file size limit.`}
             </p>
           </div>
@@ -250,18 +247,34 @@ export default function ResultCard({ result, onReset, onContinueWithImage }) {
 
       {/* Full preview modal */}
       {showFullPreview && (
-        <div 
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Full resolution image preview"
           onClick={() => setShowFullPreview(false)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-4 flex items-center justify-center cursor-zoom-out"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-4 flex items-center justify-center"
         >
-          <div className="relative max-w-3xl max-h-[90vh] bg-white dark:bg-slate-900 p-3 rounded-2xl shadow-2xl">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-3xl max-h-[90vh] bg-white dark:bg-slate-900 p-3 rounded-2xl shadow-2xl"
+          >
+            <button
+              type="button"
+              onClick={() => setShowFullPreview(false)}
+              aria-label="Close full resolution preview"
+              className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
             <img
               src={result.dataUrl}
-              alt="Full resolution preview"
+              alt="Full resolution processed image preview"
               className="max-h-[80vh] max-w-full object-contain rounded-xl"
             />
-            <div className="text-center p-2 text-xs text-slate-500">
-              Click anywhere to close full preview
+
+            <div className="text-center p-2 text-xs text-slate-500 dark:text-slate-400">
+              Click outside the image or close button to exit
             </div>
           </div>
         </div>

@@ -2,10 +2,8 @@ import React from 'react';
 import {
   BrowserRouter,
   Routes,
-  Route,
-  Navigate
+  Route
 } from 'react-router-dom';
-
 import HomePage from '../pages/HomePage.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import ImageResizerPage from '../pages/ImageResizerPage.jsx';
@@ -82,8 +80,9 @@ export default function AppRoutes() {
         {/* Unknown URLs */}
         <Route
           path="*"
-          element={<Navigate to="/404" replace />}
+          element={<NotFoundPage />}
         />
+
 
       </Routes>
     </BrowserRouter>

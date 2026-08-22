@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -37,48 +38,48 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
 
               <li>
-                <a
-                  href="/image-resizer"
+                <Link
+                  to="/image-resizer"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Image Resizer
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/image-compressor"
+                <Link
+                  to="/image-compressor"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Image Compressor
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/compress-image-to-20kb"
+                <Link
+                  to="/compress-image-to-20kb"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Compress Image to 20KB
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/compress-image-to-50kb"
+                <Link
+                  to="/compress-image-to-50kb"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Compress Image to 50KB
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/compress-image-to-100kb"
+                <Link
+                  to="/compress-image-to-100kb"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Compress Image to 100KB
-                </a>
+                </Link>
               </li>
 
             </ul>
@@ -93,39 +94,39 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
 
               <li>
-                <a
-                  href="/passport-photo-resizer"
+                <Link
+                  to="/passport-photo-resizer"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Passport Photo Resizer
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/signature-resizer"
+                <Link
+                  to="/signature-resizer"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Signature Resizer
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/ssc-photo-resizer"
+                <Link
+                  to="/ssc-photo-resizer"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   SSC Photo Resizer
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
-                  href="/upsc-photo-resizer"
+                <Link
+                  to="/upsc-photo-resizer"
                   className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   UPSC Photo Resizer
-                </a>
+                </Link>
               </li>
 
             </ul>
@@ -152,7 +153,7 @@ export default function Footer() {
         <div className="pt-6 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
 
           <div>
-            © {new Date().getFullYear()} ImageFix. Built with the MERN Stack.
+            © {new Date().getFullYear()} ImageFix. Built for fast, private image processing.
           </div>
 
           <div className="flex items-center gap-4 text-[11px]">

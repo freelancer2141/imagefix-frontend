@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Maximize2, Minimize2 } from 'lucide-react';
 import Header from '../components/Header.jsx';
 import HeroSection from '../components/HeroSection.jsx';
 import ImageUploader from '../components/ImageUploader.jsx';
@@ -152,15 +151,7 @@ export default function HomePage() {
       {/* Main Content Area */}
       <main className="flex-1 pt-16">
         {/* Hero Section */}
-        <HeroSection
-          activeTab={activeTab}
-          setActiveTab={(tab) => {
-            setActiveTab(tab);
-            setActiveNav(tab);
-            setProcessedResult(null);
-          }}
-          scrollToSection={scrollToSection}
-        />
+        <HeroSection />
 
         {/* Main Interactive Tool Container */}
         {/* <div id="tool-section" className="max-w-5xl mx-auto px-4 mb-16"> */}

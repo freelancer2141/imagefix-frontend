@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 
 export default function SEO({ title, description }) {
   useEffect(() => {
+    const canonicalUrl = `${window.location.origin}${window.location.pathname}`;
+
     // Page title
     document.title = title;
 
@@ -31,6 +33,45 @@ export default function SEO({ title, description }) {
 
     robotsTag.setAttribute('content', 'index, follow');
 
+    // Canonical URL
+    let canonicalTag = document.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (!canonicalTag) {
+      canonicalTag = document.createElement('link');
+      canonicalTag.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalTag);
+    }
+
+    canonicalTag.setAttribute('href', canonicalUrl);
+
+    // Open Graph type
+    let ogTypeTag = document.querySelector(
+      'meta[property="og:type"]'
+    );
+
+    if (!ogTypeTag) {
+      ogTypeTag = document.createElement('meta');
+      ogTypeTag.setAttribute('property', 'og:type');
+      document.head.appendChild(ogTypeTag);
+    }
+
+    ogTypeTag.setAttribute('content', 'website');
+
+    // Open Graph URL
+    let ogUrlTag = document.querySelector(
+      'meta[property="og:url"]'
+    );
+
+    if (!ogUrlTag) {
+      ogUrlTag = document.createElement('meta');
+      ogUrlTag.setAttribute('property', 'og:url');
+      document.head.appendChild(ogUrlTag);
+    }
+
+    ogUrlTag.setAttribute('content', canonicalUrl);
+
     // Open Graph title
     let ogTitleTag = document.querySelector(
       'meta[property="og:title"]'
@@ -56,6 +97,19 @@ export default function SEO({ title, description }) {
     }
 
     ogDescriptionTag.setAttribute('content', description);
+
+    // Twitter/X card
+    let twitterCardTag = document.querySelector(
+      'meta[name="twitter:card"]'
+    );
+
+    if (!twitterCardTag) {
+      twitterCardTag = document.createElement('meta');
+      twitterCardTag.setAttribute('name', 'twitter:card');
+      document.head.appendChild(twitterCardTag);
+    }
+
+    twitterCardTag.setAttribute('content', 'summary');
 
     // Twitter/X title
     let twitterTitleTag = document.querySelector(

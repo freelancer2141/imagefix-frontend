@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import {
   Maximize2,
   Minimize2,
@@ -75,15 +76,15 @@ export default function Header({
         mass: 0.8
       }}
       className={`fixed top-0 left-0 right-0 z-50 w-full border-b transition-colors duration-200 ${hasScrolled
-          ? 'border-slate-200/90 dark:border-slate-800/90 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md shadow-sm shadow-slate-200/40 dark:shadow-black/40'
-          : 'border-slate-200/70 dark:border-slate-800/70 bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-md'
+        ? 'border-slate-200/90 dark:border-slate-800/90 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md shadow-sm shadow-slate-200/40 dark:shadow-black/40'
+        : 'border-slate-200/70 dark:border-slate-800/70 bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-md'
         }`}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-18 flex items-center">
 
         {/* Brand */}
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-3 cursor-pointer group select-none"
         >
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-700 dark:from-indigo-500 dark:to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
@@ -99,62 +100,64 @@ export default function Header({
               Exam & Online Form Image Suite
             </p>
           </div>
-        </a>
+        </Link>
 
         {/* Navigation */}
-        <nav className="hidden md:flex ml-auto items-center gap-1 bg-slate-100/80 dark:bg-slate-900/80 p-1 rounded-xl border border-slate-200/60 dark:border-slate-800/80">
+        <nav
+          aria-label="Main navigation"
+          className="hidden md:flex ml-auto items-center gap-1 bg-slate-100/80 dark:bg-slate-900/80 p-1 rounded-xl border border-slate-200/60 dark:border-slate-800/80">
 
           {/* Resize */}
-          <a
+          <Link
             id="nav-btn-resize"
-            href="/image-resizer"
+            to="/image-resizer"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'resize'
-                ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
+              ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
               }`}
           >
             <Maximize2 className="w-3.5 h-3.5" />
             <span>Resize</span>
-          </a>
+          </Link>
 
           {/* Compress */}
-          <a
+          <Link
             id="nav-btn-compress"
-            href="/image-compressor"
+            to="/image-compressor"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'compress'
-                ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
+              ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
               }`}
           >
             <Minimize2 className="w-3.5 h-3.5" />
             <span>Compress (KB)</span>
-          </a>
+          </Link>
 
           {/* Presets */}
-          <a
+          <Link
             id="nav-btn-presets"
-            href="/#presets-guide"
+            to="/#presets-guide"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'presets'
-                ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
+              ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
               }`}
           >
             <Layers className="w-3.5 h-3.5" />
             <span>Presets</span>
-          </a>
+          </Link>
 
           {/* FAQ */}
-          <a
+          <Link
             id="nav-btn-about"
-            href="/#faq-section"
+            to="/#faq-section"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'faq'
-                ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
+              ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
               }`}
           >
             <HelpCircle className="w-3.5 h-3.5" />
             <span>FAQ</span>
-          </a>
+          </Link>
 
         </nav>
 

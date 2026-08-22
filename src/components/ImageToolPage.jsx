@@ -28,16 +28,6 @@ export default function ImageToolPage({
         setError(null);
     };
 
-    const handleTabChange = (tab) => {
-        if (tab === 'resize') {
-            window.location.href = '/image-resizer';
-        }
-
-        if (tab === 'compress') {
-            window.location.href = '/image-compressor';
-        }
-    };
-
     return (
         <>
             <SEO
@@ -100,8 +90,6 @@ export default function ImageToolPage({
                                             }}
                                             isProcessing={isProcessing}
                                             setIsProcessing={setIsProcessing}
-                                            activeTab="resize"
-                                            setActiveTab={handleTabChange}
                                         />
                                     ) : (
                                         <CompressTool
@@ -112,8 +100,6 @@ export default function ImageToolPage({
                                             }}
                                             isProcessing={isProcessing}
                                             setIsProcessing={setIsProcessing}
-                                            activeTab="compress"
-                                            setActiveTab={handleTabChange}
                                         />
                                     )}
 

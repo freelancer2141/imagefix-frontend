@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ImageToolPage from '../components/ImageToolPage.jsx';
 
 export default function CompressImageTargetPage({ targetKb }) {
@@ -7,7 +8,6 @@ export default function CompressImageTargetPage({ targetKb }) {
       pageType={`compress${targetKb}`}
       toolType="compress"
       targetKb={targetKb}
-
       title={`Compress Image to ${targetKb}KB Online Free | ImageFix`}
 
       description={`Compress JPG, JPEG, PNG and WebP images to ${targetKb}KB online for free. Reduce image file size for SSC, UPSC, IBPS, government exams, passport, visa and job application forms.`}
@@ -76,30 +76,30 @@ export default function CompressImageTargetPage({ targetKb }) {
             <div className="mt-4 flex flex-wrap gap-3">
 
               {targetKb !== 20 && (
-                <a
-                  href="/compress-image-to-20kb"
+                <Link
+                  to="/compress-image-to-20kb"
                   className="text-indigo-600 dark:text-indigo-400 hover:underline"
                 >
                   Compress Image to 20KB
-                </a>
+                </Link>
               )}
 
               {targetKb !== 50 && (
-                <a
-                  href="/compress-image-to-50kb"
+                <Link
+                  to="/compress-image-to-50kb"
                   className="text-indigo-600 dark:text-indigo-400 hover:underline"
                 >
                   Compress Image to 50KB
-                </a>
+                </Link>
               )}
 
               {targetKb !== 100 && (
-                <a
-                  href="/compress-image-to-100kb"
+                <Link
+                  to="/compress-image-to-100kb"
                   className="text-indigo-600 dark:text-indigo-400 hover:underline"
                 >
                   Compress Image to 100KB
-                </a>
+                </Link>
               )}
 
             </div>

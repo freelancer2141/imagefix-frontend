@@ -25,8 +25,8 @@ export const PRESET_OPTIONS = [
     maxKb: 50,
     format: 'image/jpeg',
     aspectLabel: '200 × 230 px',
-    description: 'Commonly specified dimension for Staff Selection Commission online application forms.',
-    instructions: 'Light background, clear front face view. Standard file size 20 KB to 50 KB.',
+    description: 'A commonly used photo dimension for SSC application forms; check the current SSC notification for the exact requirement.',
+    instructions: 'Use the file size limits specified in the current SSC application instructions.'
   },
   {
     id: 'ssc-signature',
@@ -40,8 +40,8 @@ export const PRESET_OPTIONS = [
     maxKb: 20,
     format: 'image/jpeg',
     aspectLabel: '140 × 60 px',
-    description: 'Signature requirement for SSC recruitment portal.',
-    instructions: 'Black/blue ink on white paper, cropped without shadows. Size 10 KB to 20 KB.',
+    description: 'A commonly used signature format for SSC recruitment applications; check the current SSC notification for the exact requirement.',
+    instructions: 'Use black or blue ink on white paper and check the current SSC application instructions for the required dimensions and file size.',
   },
   {
     id: 'upsc-cse-photo',
@@ -55,8 +55,8 @@ export const PRESET_OPTIONS = [
     maxKb: 300,
     format: 'image/jpeg',
     aspectLabel: '350 × 350 px (1:1)',
-    description: 'Standard square format photo for UPSC One Time Registration (OTR).',
-    instructions: 'Name and date of photograph as required by latest UPSC notification.',
+    description: 'Square photo format commonly used for UPSC One Time Registration (OTR); check the current UPSC notification for exact requirements.',
+    instructions: 'Add the name and date to the photograph only if required by the current UPSC notification.'
   },
   {
     id: 'ibps-sbi-photo',
@@ -70,8 +70,8 @@ export const PRESET_OPTIONS = [
     maxKb: 50,
     format: 'image/jpeg',
     aspectLabel: '200 × 230 px (4.5 × 3.5 cm)',
-    description: 'Institute of Banking Personnel Selection applicant photograph.',
-    instructions: 'White or light background. Standard limit 20 KB to 50 KB.',
+    description: 'Commonly used photo format for IBPS/SBI banking applications; check the current application instructions for exact requirements.',
+    instructions: 'Use a white or light background and check the current IBPS/SBI application instructions for the required dimensions and file size.',
   },
   {
     id: 'ibps-signature',
@@ -85,8 +85,8 @@ export const PRESET_OPTIONS = [
     maxKb: 20,
     format: 'image/jpeg',
     aspectLabel: '140 × 60 px',
-    description: 'Signature upload for IBPS/SBI banking online applications.',
-    instructions: 'Sign on white paper with black ink. Standard limit 10 KB to 20 KB.',
+    description: 'Commonly used signature format for IBPS/SBI banking applications; check the current application instructions for exact requirements.',
+    instructions: 'Sign on white paper with black ink and check the current IBPS/SBI application instructions for the required dimensions and file size.',
   },
   {
     id: 'rrb-railway-photo',
@@ -131,7 +131,7 @@ export const PRESET_OPTIONS = [
     format: 'image/jpeg',
     aspectLabel: '600 × 600 px (1:1)',
     description: 'Standard 2x2 inches (51x51 mm) square format for US DS-160.',
-    instructions: 'White or off-white background, head centered between 50% and 69% of height.',
+    instructions: 'Use a square 2 × 2 inch photo format and check the current official U.S. visa or immigration requirements before submitting.'
   },
   {
     id: 'nta-neet-jee-photo',

@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageToolPage from '../components/ImageToolPage.jsx';
+import { Link } from 'react-router-dom';
 
 export default function UPSCPhotoResizerPage() {
     return (
@@ -8,7 +9,7 @@ export default function UPSCPhotoResizerPage() {
 
             title="UPSC Photo Resizer Online Free | Resize Photo for UPSC Forms | ImageFix"
 
-            description="Resize photos online for UPSC applications and examination forms. Adjust image dimensions according to the required UPSC photo specifications with the free ImageFix photo resizer."
+            description="Resize photos online for UPSC applications and examination forms. Adjust image dimensions to the requirements specified by the official UPSC notification or application portal with ImageFix."
 
             heading="Resize Photo for UPSC Application Online"
 
@@ -85,40 +86,40 @@ export default function UPSCPhotoResizerPage() {
                         </h2>
 
                         <div className="mt-4 flex flex-wrap gap-3">
-                            <a
-                                href="/image-resizer"
+                            <Link
+                                to="/image-resizer"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 Image Resizer
-                            </a>
+                            </Link>
 
-                            <a
-                                href="/image-compressor"
+                            <Link
+                                to="/image-compressor"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 Image Compressor
-                            </a>
+                            </Link>
 
-                            <a
-                                href="/passport-photo-resizer"
+                            <Link
+                                to="/passport-photo-resizer"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 Passport Photo Resizer
-                            </a>
+                            </Link>
 
-                            <a
-                                href="/signature-resizer"
+                            <Link
+                                to="/signature-resizer"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 Signature Resizer
-                            </a>
+                            </Link>
 
-                            <a
-                                href="/ssc-photo-resizer"
+                            <Link
+                                to="/ssc-photo-resizer"
                                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
                             >
                                 SSC Photo Resizer
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, ShieldCheck, CheckCircle2, Sparkles } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 
 const FAQS = [
   {
-    q: 'How does ImageFix compress images to exact KB sizes without quality loss?',
-    a: 'ImageFix uses an iterative client-side binary search algorithm on the HTML5 Canvas 2D engine. It systematically calculates the optimal JPEG quantization matrix to bring the final file payload at or below your requested KB limit while maintaining maximum sharp edge contrast and fidelity.',
+    q: 'How does ImageFix compress images to a specific KB size?',
+    a: 'ImageFix processes your image directly in your browser using the HTML5 Canvas API. It adjusts JPEG compression settings to reduce the file size toward your selected KB target while preserving the image dimensions and aiming for the best practical visual quality.',
   },
   {
     q: 'Are my personal photos or signature documents uploaded to your servers?',
@@ -12,7 +12,7 @@ const FAQS = [
   },
   {
     q: 'Why do government exam portals reject uploaded photos?',
-    a: 'Most government and recruitment portals have automated server validators that check two strict criteria: 1) exact pixel boundaries (e.g. 200x230 px for SSC or 350x350 px for UPSC), and 2) strict file byte boundaries (e.g. 20 KB to 50 KB). If an image is 51 KB or 201x230 px, the server automatically rejects it. ImageFix ensures your image strictly matches both.',
+    a: 'Government and recruitment portals may check requirements such as image dimensions and file-size limits. For example, a portal may require a specific pixel size or a file between certain KB limits. If your image does not meet the published requirements, the portal may reject it. ImageFix helps you resize and compress your image toward the required dimensions and file-size limits.'
   },
   {
     q: 'How do I convert 3.5 cm × 4.5 cm into pixels?',
@@ -52,19 +52,24 @@ export default function FaqSection() {
               className="rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 overflow-hidden transition-colors"
             >
               <button
+                type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : idx)}
+                aria-expanded={isOpen}
+                aria-controls={`faq-answer-${idx}`}
                 className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer"
               >
                 <span>{faq.q}</span>
                 <ChevronDown
-                  className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 text-indigo-600 dark:text-indigo-400' : ''
-                  }`}
+                  className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-indigo-600 dark:text-indigo-400' : ''
+                    }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="px-5 pb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 pt-3">
+                <div
+                  id={`faq-answer-${idx}`}
+                  className="px-5 pb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 pt-3"
+                >
                   {faq.a}
                 </div>
               )}

@@ -5,13 +5,9 @@ export default function ImageResizerPage() {
     return (
         <ImageToolPage
             pageType="resize"
-
             title="Free Online Image Resizer — Resize Images to Exact Pixels | ImageFix"
-
             description="Resize images online to exact pixel dimensions for SSC, UPSC, IBPS, Railways, passport, visa and job application forms. Free online image resizer by ImageFix."
-
             heading="Resize Your Image Online"
-
             content={
                 <>
                     <div>

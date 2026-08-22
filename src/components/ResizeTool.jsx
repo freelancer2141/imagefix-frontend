@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {
   Maximize2,
   Minimize2,
-  Lock,
   RotateCcw,
-  Sparkles,
   AlertTriangle
 } from 'lucide-react';
 import { PRESET_OPTIONS } from '../utils/presetsData.js';
 import { resizeImageToDimensions, compressImageToTargetSize } from '../utils/imageProcessor.js';
-import { recordProcessedAction } from '../services/api.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function ResizeTool({
   imageMeta,
@@ -17,9 +15,7 @@ export default function ResizeTool({
   isProcessing,
   setIsProcessing,
   initialPresetId = null,
-  initialTargetKb = null,
-  activeTab = 'resize',
-  setActiveTab
+  initialTargetKb = null
 }) {
   const [selectedPreset, setSelectedPreset] = useState('custom');
   const [width, setWidth] = useState(imageMeta?.width || 200);
@@ -30,6 +26,8 @@ export default function ResizeTool({
   const [applyTargetKb, setApplyTargetKb] = useState(Boolean(initialTargetKb));
   const [targetKb, setTargetKb] = useState(initialTargetKb || 50);
   const [validationError, setValidationError] = useState('');
+  const navigate = useNavigate();
+
 
   // Sync initial dimensions when a new image loads
   useEffect(() => {
@@ -194,7 +192,6 @@ export default function ResizeTool({
         };
       }
 
-      recordProcessedAction('resize', Math.max(0, imageMeta.size - result.size));
       onProcessComplete(result);
     } catch (err) {
       setValidationError(err.message || 'Failed to resize image.');
@@ -215,7 +212,7 @@ export default function ResizeTool({
         <div className="grid grid-cols-2 gap-2.5 mb-5 p-1 bg-slate-100 dark:bg-slate-950/60 rounded-2xl border border-slate-200/80 dark:border-slate-800">
           <button
             type="button"
-            onClick={() => setActiveTab && setActiveTab('resize')}
+            onClick={() => navigate('/image-resizer')}
             className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm font-bold shadow-xs border border-slate-200/60 dark:border-slate-700 cursor-pointer"
           >
             <Maximize2 className="w-4 h-4 stroke-[2.2]" />
@@ -224,7 +221,7 @@ export default function ResizeTool({
 
           <button
             type="button"
-            onClick={() => setActiveTab && setActiveTab('compress')}
+            onClick={() => navigate('/image-compressor')}
             className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 text-xs sm:text-sm font-bold transition-colors cursor-pointer"
           >
             <Minimize2 className="w-4 h-4 stroke-[2.2]" />
