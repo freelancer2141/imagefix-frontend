@@ -136,7 +136,7 @@ export default function Header({
           {/* Presets */}
           <Link
             id="nav-btn-presets"
-            to="/#presets-guide"
+            href="/#presets-guide"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'presets'
               ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
@@ -149,7 +149,7 @@ export default function Header({
           {/* FAQ */}
           <Link
             id="nav-btn-about"
-            to="/#faq-section"
+            href="/#faq-section"
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${activeNav === 'faq'
               ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-medium'
