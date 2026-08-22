@@ -89,15 +89,6 @@ export default function ResultCard({ result, onReset, onContinueWithImage }) {
               alt="Processed image preview"
               className="max-h-56 max-w-full object-contain rounded-xl shadow-xs"
             />
-            <button
-              type="button"
-              onClick={() => setShowFullPreview(true)}
-              aria-label="View full size image"
-              className="absolute bottom-3 right-3 p-2 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white text-xs backdrop-blur-sm transition-all cursor-pointer"
-              title="View full size image"
-            >
-              <Eye className="w-3.5 h-3.5" />
-            </button>
           </div>
           <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-2">
             Dimensions: {result.width} × {result.height} px
