@@ -1,0 +1,25 @@
+# ImageFix
+
+ImageFix is a free online image resizer and image compressor for preparing images for online forms, applications, examinations, and other digital requirements.
+
+## Main Tools
+
+- [Image Resizer](https://compress-image-d8g.pages.dev/image-resizer)
+- [Image Compressor](https://compress-image-d8g.pages.dev/image-compressor)
+
+## Image Compression Tools
+
+- [Compress Image to 20KB](https://compress-image-d8g.pages.dev/compress-image-to-20kb)
+- [Compress Image to 50KB](https://compress-image-d8g.pages.dev/compress-image-to-50kb)
+- [Compress Image to 100KB](https://compress-image-d8g.pages.dev/compress-image-to-100kb)
+
+## Photo Resizers
+
+- [Passport Photo Resizer](https://compress-image-d8g.pages.dev/passport-photo-resizer)
+- [Signature Resizer](https://compress-image-d8g.pages.dev/signature-resizer)
+- [SSC Photo Resizer](https://compress-image-d8g.pages.dev/ssc-photo-resizer)
+- [UPSC Photo Resizer](https://compress-image-d8g.pages.dev/upsc-photo-resizer)
+
+## Privacy
+
+Image processing is performed directly in the user's browser. Images do not need to be uploaded to a server for resizing or compression.
